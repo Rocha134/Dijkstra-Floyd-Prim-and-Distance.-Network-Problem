@@ -198,20 +198,17 @@ int main()
 
     cout<<"1. Forma de cablear las colonias con fibra, lista de arcos de la forma (A,B)."<<endl;
 
-    // Path from node 1 to 3
-    cout << "Shortest path from 1 to 3: ";
-    path = constructPath(1, 3);
-    printPath(path);
 
-    // Path from node 0 to 2
-    cout << "Shortest path from 0 to 2: ";
-    path = constructPath(0, 2);
-    printPath(path);
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            if (i != j){
+                cout << "La forma más optima de cablear las colonias: ("<<i<<","<<j<<") es: ";
+                path = constructPath(i, j);
+                printPath(path);
+            }
+        }
+    }
 
-    // path from node 3 to 2
-    cout << "Shortest path from 3 to 2: ";
-    path = constructPath(3, 2);
-    printPath(path);
 
     //Travelling Salesman Problem TSP
     cout<<endl<<"2. Ruta a seguir por el personal que reparte correspondencia, considerando inicio y fin en al misma colonia."<<endl;
