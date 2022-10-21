@@ -237,6 +237,8 @@ void printPath(vector<int>& path)
     cout << numberToLetter(path[n - 1]) << endl;
 }
 
+using namespace std;
+
 int bfs(int source,int target,int n,vector<int>& parent,vector<vector<int>>& graph){
     //Update the parent vector as each node value to be -1
     fill(parent.begin(),parent.end(),-1);
@@ -405,6 +407,27 @@ int main()
     cout<<"4. Nodo al que conectaré una nueva ubicación de acuerdo con su distancia a las centrales."<<endl;
 
     //Ford-Fulkerson Algorithm for Maximum Flow Problem
+    vector<vector<int>> graph_weights(V, vector<int> (V, 0));
+    //Adding edges weight in the graph
+    addEdge(graph_weights, 0, 0, 0);
+    addEdge(graph_weights, 0, 1, 48);
+    addEdge(graph_weights, 0, 2, 12);
+    addEdge(graph_weights, 0, 3, 18);
+    addEdge(graph_weights, 1, 0, 52);
+    addEdge(graph_weights, 1, 1, 0);
+    addEdge(graph_weights, 1, 2, 42);
+    addEdge(graph_weights, 1, 3, 32);
+    addEdge(graph_weights, 2, 0, 18);
+    addEdge(graph_weights, 2, 1, 46);
+    addEdge(graph_weights, 2, 2, 0);
+    addEdge(graph_weights, 2, 3, 56);
+    addEdge(graph_weights, 3, 0, 21);
+    addEdge(graph_weights, 3, 1, 36);
+    addEdge(graph_weights, 3, 2, 52);
+    addEdge(graph_weights, 3, 3, 0);
+
+    //Printing the maximum flow from the given network Using Ford Fulkerson Method
+    cout << "Maximum Flow Using Ford Fulkerson Algo: " << Ford_Fulkerson(0,3,V,graph_weights) << endl;
 
     return 0;
 }

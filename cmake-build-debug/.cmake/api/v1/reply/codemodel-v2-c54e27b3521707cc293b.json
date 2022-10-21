@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/rocha134/CLionProjects/Integradora2/cmake-build-debug",
-		"source" : "/Users/rocha134/CLionProjects/Integradora2"
+		"build" : "/Users/rocha134/CLionProjects/Dijkstra-Floyd-Prim-and-Distance.-Network-Problem/cmake-build-debug",
+		"source" : "/Users/rocha134/CLionProjects/Dijkstra-Floyd-Prim-and-Distance.-Network-Problem"
 	},
 	"version" : 
 	{
