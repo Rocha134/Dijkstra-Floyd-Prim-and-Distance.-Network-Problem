@@ -103,15 +103,11 @@ void takeInput()
 {
     int i,j;
 
-    cout<<"Enter the number of villages: ";
+    //cout<<"Ingresa el número de colonias: ";
     cin>>n;
-
-    cout<<"\nEnter the Cost Matrix\n";
 
     for(i=0;i < n;i++)
     {
-        cout<<"\nEnter Elements of Row: "<<i<<"\n";
-
         for( j=0;j < n;j++)
             cin>>ary[i][j];
 
@@ -325,22 +321,6 @@ int main()
 
     takeInput();
 
-    // We fill the vector
-    vector<vector<int>> ary_flow;
-
-    cout<<"\nIngresa la matriz que representa las capacidades máximas de flujo de datos entre colonia i y colonia j\n";
-
-    for(int i=0;i < n;i++)
-    {
-        ary_flow.push_back(std::vector<int>());
-        cout<<"\nEnter Elements of Row: "<<i<<"\n";
-
-        for(int j=0;j < n;j++)
-            cin>>aux;
-            ary_flow[i].push_back(aux);
-    }
-
-
     int V = n;
     /*vector<vector<int> > graph
             = { { 0, 16, 45, 32 },
@@ -369,6 +349,13 @@ int main()
         cout<<endl;
     }
     */
+    int ary_flow[V][V];
+
+    for(int i=0;i < n;i++)
+    {
+        for(int j=0;j < n;j++)
+            cin>>ary_flow[i][j];
+    }
 
 
     // Function to initialise the
@@ -404,11 +391,10 @@ int main()
 
     cout <<"3. Valor del flujo máximo de la información del nodo inicial al nodo final."<<endl;
 
-    cout<<"4. Nodo al que conectaré una nueva ubicación de acuerdo con su distancia a las centrales."<<endl;
-
     //Ford-Fulkerson Algorithm for Maximum Flow Problem
     vector<vector<int>> graph_weights(V, vector<int> (V, 0));
     //Adding edges weight in the graph
+    /*
     addEdge(graph_weights, 0, 0, 0);
     addEdge(graph_weights, 0, 1, 48);
     addEdge(graph_weights, 0, 2, 12);
@@ -425,9 +411,25 @@ int main()
     addEdge(graph_weights, 3, 1, 36);
     addEdge(graph_weights, 3, 2, 52);
     addEdge(graph_weights, 3, 3, 0);
+     */
+    /*
+    for (int i = 0; i < n ; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout<<ary_flow[i][j]<<"  ";
+        }
+        cout<<endl;
+    }
+    */
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            addEdge(graph_weights,i,j,ary_flow[i][j]);
+        }
+    }
 
     //Printing the maximum flow from the given network Using Ford Fulkerson Method
     cout << "Maximum Flow Using Ford Fulkerson Algo: " << Ford_Fulkerson(0,3,V,graph_weights) << endl;
+
+    cout<<"4. Nodo al que conectaré una nueva ubicación de acuerdo con su distancia a las centrales."<<endl;
 
     return 0;
 }
