@@ -156,12 +156,34 @@ int main()
 {
     takeInput();
 
-    int V = 4;
-    vector<vector<int> > graph
+    int V = n;
+    /*vector<vector<int> > graph
             = { { 0, 16, 45, 32 },
                 { 16, 0, 18, 21 },
                 { 45, 18, 0, 7 },
-                { 32, 21, 7, 0 } };
+                { 32, 21, 7, 0 } };*/
+
+    // Clone a vector with the info of the 2D Ary
+    vector<vector<int>> graph;
+
+    for(int i=0; i<n; i++)
+    {
+        graph.push_back(std::vector<int>());
+        for(int j=0; j<n; j++)
+        {
+            graph[i].push_back(ary[i][j]);
+        }
+    }
+
+    /*
+    //print the vector values
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            cout<<graph[i][j]<< "  ";
+        }
+        cout<<endl;
+    }
+    */
 
 
     // Function to initialise the
