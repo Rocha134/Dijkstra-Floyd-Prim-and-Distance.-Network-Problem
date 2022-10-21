@@ -166,13 +166,13 @@ void mincost(int city)
 
     completed[city]=1;
 
-    cout<<city<<"--->";
+    cout<<numberToLetter(city)<<"--->";
     ncity=least(city);
 
     if(ncity==999)
     {
         ncity=0;
-        cout<<ncity;
+        cout<<numberToLetter(ncity);
         cost+=ary[city][ncity];
 
         return;
@@ -233,8 +233,8 @@ void printPath(vector<int>& path)
 {
     int n = path.size();
     for (int i = 0; i < n - 1; i++)
-        cout << path[i] << " -> ";
-    cout << path[n - 1] << endl;
+        cout << numberToLetter(path[i]) << " -> ";
+    cout << numberToLetter(path[n - 1]) << endl;
 }
 
 // Driver code
@@ -288,7 +288,7 @@ int main()
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             if (i != j){
-                cout << "La forma más optima de cablear las colonias: ("<<i<<","<<j<<") es: ";
+                cout << "La forma más optima de cablear las colonias: ("<<numberToLetter(i)<<","<<numberToLetter(j)<<") es: ";
                 path = constructPath(i, j);
                 printPath(path);
             }
@@ -297,11 +297,11 @@ int main()
 
 
     //Travelling Salesman Problem TSP
-    cout<<endl<<"2. Ruta a seguir por el personal que reparte correspondencia, considerando inicio y fin en al misma colonia."<<endl;
-    cout<<"\n\nEl camino pasando por todas las colonias y de regreso es:\n";
+    cout<<endl<<"2. Ruta a seguir por el personal que reparte correspondencia, empezando de la primer colonia A y terminando en A."<<endl;
+    cout<<"El camino pasando por todas las colonias y de regreso es:\n";
     mincost(0); //passing 0 because starting vertex
-
-    cout<<"\n\nEl costo minímo es: "<<cost<<endl;
+    cout<<endl;
+    cout<<"El costo minímo es: "<<cost<<"km"<<endl<<endl;
 
     cout <<"3. Valor del flujo máximo de la información del nodo inicial al nodo final."<<endl;
 
