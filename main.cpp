@@ -4,6 +4,19 @@
 #include "stdc++.h"
 using namespace std;
 
+struct coordinate { // This structure is named "myDataType"
+    int point1;
+    int point2;
+    float distanceToService;
+}newService,auxCentral,nearestCentral;
+
+// Function to calculate distance
+float distance(int x1, int y1, int x2, int y2)
+{
+    // Calculating distance
+    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) * 1.0);
+}
+
 #define MAXN 100
 // Infinite value for array
 const int INF = 1e7;
@@ -368,6 +381,7 @@ int main()
     floydWarshall(V);
     vector<int> path;
 
+    cout<<endl;
     cout<<"1. Forma de cablear las colonias con fibra, lista de arcos de la forma (A,B)."<<endl;
 
 
@@ -427,9 +441,49 @@ int main()
     }
 
     //Printing the maximum flow from the given network Using Ford Fulkerson Method
-    cout << "Maximum Flow Using Ford Fulkerson Algo: " << Ford_Fulkerson(0,3,V,graph_weights) << endl;
+    cout << "Maximum Flow Using Ford Fulkerson Algorithm: " << Ford_Fulkerson(0,3,V,graph_weights) << endl<<endl;
+    cout<<"4. Nodo al que conectaré una nueva ubicación de acuerdo con su distancia a las centrales. Teniendo en cuenta que la nueva contratación es en el punto (0,0)";
+    float x1 = 0,y1 = 0;
+    char eater;
 
-    cout<<"4. Nodo al que conectaré una nueva ubicación de acuerdo con su distancia a las centrales."<<endl;
+    newService.point1 = 0;
+    newService.point2 = 0;
+    newService.distanceToService = 0.0;
+
+    nearestCentral.point1 = 0;
+    nearestCentral.point2 = 0;
+    nearestCentral.distanceToService = 9999999999.9999999999;
+
+
+    for (int i = 0; i < n; ++i) {
+
+        //std::cout << "Enter coordinates as \"(x1,y1) (x2,y2)\"\n";
+        std::cin >> eater; // removes (
+        std::cin >> x1;
+        std::cin >> eater; // removes ,
+        std::cin >> y1;
+        std::cin >> eater; //removes )
+
+        auxCentral.point1 = x1;
+        auxCentral.point2 = y1;
+        auxCentral.distanceToService = distance(auxCentral.point1,auxCentral.point2,newService.point1,newService.point2);
+
+        //We choose the nearest one
+        if (auxCentral.distanceToService<=nearestCentral.distanceToService){
+            nearestCentral.point1 = auxCentral.point1;
+            nearestCentral.point2 = auxCentral.point2;
+            nearestCentral.distanceToService = auxCentral.distanceToService;
+        }
+    }
+
+    cout<<"El nuevo servicio debe conectarse a la central con coordenadas: ("<<nearestCentral.point1<<","<<nearestCentral.point2<<")"<<endl;
+    cout<<"Esto con una distancia miníma de: "<<nearestCentral.distanceToService<<endl;
+
+    //cout<<shortestDistance<<endl;
+
+
+
+
 
     return 0;
 }
