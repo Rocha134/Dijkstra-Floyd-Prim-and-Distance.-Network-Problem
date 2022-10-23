@@ -1,6 +1,6 @@
-// C++ program to find the shortest
-// path between any two nodes using
-// Floyd Warshall Algorithm.
+//Francisco Rocha
+//Juan Carlos Llanos
+//Iker Guerrero
 #include "stdc++.h"
 using namespace std;
 
